@@ -1,0 +1,49 @@
+[System]
+Name='fuzzy'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Dochód'
+Range=[0 16000]
+NumMFs=3
+MF1='Niski':'trimf',[0 0 8000]
+MF2='Średni':'trimf',[0 8000 16000]
+MF3='Duży':'trimf',[8000 16000 24000]
+
+[Input2]
+Name='Zaległe płatności'
+Range=[0 5]
+NumMFs=3
+MF1='Małe':'trimf',[0 0 2]
+MF2='Średnie':'trimf',[0 3 5]
+MF3='Duże':'trimf',[2 5 5]
+
+[Output1]
+Name='Ryzyko'
+Range=[0 100]
+NumMFs=5
+MF1='Niskie':'trimf',[0 20 50]
+MF2='Średnie':'trimf',[20 50 70]
+MF3='Duże':'trimf',[50 70 100]
+MF4='Krytyczne':'trimf',[70 100 100]
+MF5='Znikome':'trimf',[0 0 20]
+
+[Rules]
+1 1, 2 (1) : 1
+2 1, 1 (1) : 1
+3 1, 5 (1) : 1
+1 2, 3 (1) : 1
+2 2, 2 (1) : 1
+3 2, 2 (1) : 1
+1 3, 4 (1) : 1
+2 3, 3 (1) : 1
+3 3, 3 (1) : 1
